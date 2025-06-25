@@ -49,14 +49,21 @@
             text-decoration: none;
             margin: 0 15px;
             font-weight: 500;
+            transition: color 0.3s ease;
         }
         .main-nav a.brand {
             font-size: 1.5em;
             font-weight: bold;
-            color: var(--heading-color);
+            color: var(--primary-color);
         }
 
+        .brand:hover, .main-nav a:hover {
+            color: var(--secondary-color);
+        }
 
+        .nav-links a{
+            color: var(--text-color);
+        }
         .project-header {
             text-align: center;
             padding: 60px 20px 40px;
@@ -178,6 +185,13 @@
             background-color: var(--secondary-color);
             color: var(--background-color);
         }
+
+        @media (max-width: 480px){
+            .btn-secondary, .btn-primary {
+                width: 80%;
+                margin: 10px 0px;
+            }
+        }
         
         /* Footer - Simplified */
         .main-footer {
@@ -204,9 +218,11 @@
     <!-- Simplified Navigation - Adapt to your portfolio's nav -->
     <nav class="main-nav">
         <div class="container">
-            <a href="/index.html" class="brand">Mohluddin Munna</a> <!-- Link to your main page -->
-            <a href="/projects.html#all-projects-listing">Projects</a> <!-- Link to projects section on main page -->
-            <a href="/contact.html#contact-details">Contact</a>
+            <a href="/index.html" class="brand">&lt;Mohluddin Munna /&gt;</a> <!-- Link to your main page -->
+            <div class="nav-links">
+                <a href="/projects.html#all-projects-listing">Projects</a> <!-- Link to projects section on main page -->
+                <a href="/contact.html#contact-details">Contact</a>
+            </div>
         </div>
     </nav>
 
@@ -283,8 +299,8 @@
 
             <section class="project-links">
                 <!-- Replace with your actual links -->
-                <a href="YOUR_LIVE_ALOKCHHAYA_SITE_LINK_HERE" target="_blank" class="btn btn-primary"><i class="fas fa-external-link-alt"></i> View Live Site</a>
-                <a href="YOUR_GITHUB_REPO_LINK_HERE" target="_blank" class="btn btn-secondary"><i class="fab fa-github"></i> View on GitHub</a>
+                <a href="https://alokchhaya-high-school.netlify.app/" target="_blank" class="btn btn-primary"><i class="fas fa-external-link-alt"></i> View Live Site</a>
+                <a href="https://github.com/Mohiuddin-Munna/alokchhaya-high-school-website" target="_blank" class="btn btn-secondary"><i class="fab fa-github"></i> View on GitHub</a>
             </section>
         </main>
     </div>
@@ -297,7 +313,7 @@
                 <a href="#" target="_blank"><i class="fab fa-github"></i></a>
                 <a href="#" target="_blank"><i class="fab fa-dribbble"></i></a>
             </div>
-            <p>&copy; 2024 Mohluddin Munna. All rights reserved. | <a href="YOUR_PORTFOLIO_LINK">System Status: Online</a></p>
+            <p>&copy; 2024 Mohluddin Munna. All rights reserved. | <a href="https://mohiuddinmunna.netlify.app">System Status: Online</a></p>
         </div>
     </footer>
 
