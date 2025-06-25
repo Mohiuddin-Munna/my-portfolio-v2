@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohiuddin_Munna // Web Developer & Designer</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts (Orbitron for headings/logo, Roboto Mono for body/nav) -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="dark-mode"> <!-- Start with dark mode by default -->
+
+    <!-- Header Section -->
+    <header id="main-header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <span class="logo-text">&lt;Mohiuddin_Munna /&gt;</span>
+            </a>
+            <nav class="nav-links">
+                <ul>
+                    <li><a href="index.html" class="nav-item " data-page="index">_home</a></li>
+                    <li><a href="about.html" class="nav-item" data-page="about">_about</a></li>
+                    <li><a href="projects.html" class="nav-item" data-page="projects">_projects</a></li>
+                    <li><a href="skills.html" class="nav-item" data-page="skills">_skills</a></li>
+                    <li><a href="contact.html" class="nav-item " data-page="contact">_contact</a></li>
+                    <!-- Optional: <li><a href="blog.html" class="nav-item" data-page="blog">_blog</a></li> -->
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button id="darkModeToggle" class="theme-toggle-button" aria-label="Toggle Theme">
+                    <i class="fas fa-sun sun-icon"></i>
+                    <i class="fas fa-moon moon-icon"></i>
+                </button>
+                <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- Main Content Area for Contact Page -->
+<main id="page-content">
+    <section id="contact-hero" class="contact-hero-section section-padding">
+        <div class="container">
+            <div class="section-header">
+                <h1 class="page-title glitch" data-text="Establish_Link">// Establish_Link</h1>
+                <p class="section-subtitle">Ready to discuss your next project or just want to say hi? I'm eager to hear from you. Use the channels below or the direct line form.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact-details" class="contact-details-section section-padding-sm">
+        <div class="container contact-grid">
+            <!-- Contact Form Area -->
+            <div class="contact-form-wrapper">
+                <h2 class="contact-sub-title">// Direct_Transmission_Form</h2>
+                <!-- 
+                    গুরুত্বপূর্ণ: 
+                    ফর্মটি সঠিকভাবে কাজ করার জন্য `action` অ্যাট্রিবিউট ব্যবহার না করে, 
+                    আমরা JavaScript দিয়ে ডেটা সাবমিট করব এবং স্ট্যাটাস দেখাব।
+                    যদি Netlify বা কোনো হোস্টিং প্রোভাইডার বিল্ট-ইন ফর্ম হ্যান্ডলিং দেয়, 
+                    তাহলে তাদের নির্দেশনা অনুযায়ী অ্যাট্রিবিউট যোগ করতে হতে পারে (যেমন data-netlify="true")।
+                    আপাতত, JavaScript এর উপর নির্ভর করছি।
+                -->
+                <form id="contactForm" class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name_Identifier:</label>
+                        <input type="text" id="name" name="name" placeholder="e.g., Jane_Doe_01" required>
+                        <span class="form-line"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email_Address:</label>
+                        <input type="email" id="email" name="email" placeholder="user@domain.matrix" required>
+                        <span class="form-line"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject_Line:</label>
+                        <input type="text" id="subject" name="subject" placeholder="Project_Inquiry // Collaboration_Proposal" required>
+                        <span class="form-line"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message_Payload:</label>
+                        <textarea id="message" name="message" rows="6" placeholder="Initiate your message here..." required></textarea>
+                        <span class="form-line"></span>
+                    </div>
+                    <div class="form-group form-submit-group">
+                        <button type="submit" id="submitBtn" class="cta-button primary-cta">
+                            <i class="fas fa-satellite-dish icon-default"></i>
+                            <i class="fas fa-spinner fa-spin icon-loading" style="display: none;"></i> <!-- Loading spinner -->
+                            <span class="btn-text">Send_Signal_</span>
+                        </button>
+                    </div>
+                    <p id="form-status" class="form-status-message" aria-live="assertive"></p> <!-- aria-live for accessibility -->
+                </form>
+            </div>
+
+            <!-- Contact Info Area -->
+            <div class="contact-info-wrapper">
+                <h2 class="contact-sub-title">// Alternate_Channels</h2>
+                <div class="contact-info-item">
+                    <i class="fas fa-envelope-open-text icon"></i>
+                    <div class="info-text">
+                        <h4>Email_Relay:</h4>
+                        <p><a href="mailto:your.email@example.com">your.email@example.com</a></p> <!-- Replace with your email -->
+                    </div>
+                </div>
+                <div class="contact-info-item">
+                    <i class="fas fa-phone-alt icon"></i>
+                    <div class="info-text">
+                        <h4>Voice_Link: (Optional)</h4>
+                        <p><a href="tel:+1234567890">+1 234 567 890</a></p> <!-- Replace with your phone -->
+                    </div>
+                </div>
+                <div class="contact-info-item">
+                    <i class="fas fa-map-marker-alt icon"></i>
+                    <div class="info-text">
+                        <h4>Base_Location: (Optional)</h4>
+                        <p>Sector 7, CyberDistrict, Neo-City</p> <!-- Replace with your location -->
+                    </div>
+                </div>
+
+                <h3 class="social-connect-title">// Network_Links:</h3>
+                <div class="contact-social-links">
+                    <a href="https://github.com/yourusername" target="_blank" aria-label="GitHub" class="social-icon-link github"><i class="fab fa-github"></i></a>
+                    <a href="https://linkedin.com/in/yourusername" target="_blank" aria-label="LinkedIn" class="social-icon-link linkedin"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" target="_blank" aria-label="Dribbble (Optional)" class="social-icon-link dribbble"><i class="fab fa-dribbble"></i></a>
+                    <a href="#" target="_blank" aria-label="Twitter/X (Optional)" class="social-icon-link twitter"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Optional: Google Map Section (Keep if needed) -->
+    <!--
+    <section id="map-location" class="map-location-section">
+        <div class="map-container">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1dYOUR_COORDINATES_DATA"
+                width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </section>
+    -->
+</main>
+
+    <!-- Footer Section -->
+    <footer id="main-footer">
+        <div class="container footer-container">
+            <div class="footer-top">
+                <div class="footer-logo-area">
+                    <p class="footer-logo-text">&lt;End_Transmission /&gt;</p>
+                </div>
+                <div class="footer-social-links">
+                    <a href="https://github.com/yourusername" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i><span>GitHub</span></a>
+                    <a href="https://linkedin.com/in/yourusername" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i><span>LinkedIn</span></a>
+                    <a href="#" target="_blank" aria-label="Dribbble (Optional)"><i class="fab fa-dribbble"></i><span>Dribbble</span></a>
+                    <!-- Add more as needed -->
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="copyright-text">&copy; <span id="currentYear"></span> Mohiuddin Munna. All rights reserved. // System Status: <span class="status-ok">Online</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

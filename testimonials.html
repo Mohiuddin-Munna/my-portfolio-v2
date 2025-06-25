@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohiuddin_Munna // Web Developer & Designer</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts (Orbitron for headings/logo, Roboto Mono for body/nav) -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="dark-mode"> <!-- Start with dark mode by default -->
+
+    <!-- Header Section -->
+    <header id="main-header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <span class="logo-text">&lt;Mohiuddin_Munna /&gt;</span>
+            </a>
+            <nav class="nav-links">
+                <ul>
+                    <li><a href="index.html" class="nav-item " data-page="index">_home</a></li>
+                    <li><a href="about.html" class="nav-item" data-page="about">_about</a></li>
+                    <li><a href="projects.html" class="nav-item" data-page="projects">_projects</a></li>
+                    <li><a href="skills.html" class="nav-item" data-page="skills">_skills</a></li>
+                    <li><a href="contact.html" class="nav-item" data-page="contact">_contact</a></li>
+                    <!-- Optional: <li><a href="blog.html" class="nav-item" data-page="blog">_blog</a></li> -->
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button id="darkModeToggle" class="theme-toggle-button" aria-label="Toggle Theme">
+                    <i class="fas fa-sun sun-icon"></i>
+                    <i class="fas fa-moon moon-icon"></i>
+                </button>
+                <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area (This will be different for each page) -->
+<main id="page-content">
+    <section id="testimonials-hero" class="testimonials-hero-section section-padding">
+        <div class="container">
+            <div class="section-header">
+                <h1 class="page-title glitch" data-text="Verified_Signals">// Verified_Signals</h1>
+                <p class="section-subtitle">Hear directly from clients and collaborators who have experienced my work firsthand. Their feedback fuels my passion and commitment to excellence.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="all-testimonials" class="all-testimonials-section section-padding-sm">
+        <div class="container">
+            <div class="testimonials-listing-grid">
+                <!-- Testimonial Item 1 -->
+                <div class="testimonial-item-card">
+                    <div class="testimonial-item-content">
+                        <i class="fas fa-quote-right quote-mark-bg"></i>
+                        <p class="testimonial-item-text">
+                            "Mohiuddin Munna is not just a developer; he's a problem solver and a true partner. His dedication to our project was evident from day one. The final product exceeded all our expectations in terms of quality, performance, and design. We couldn't be happier!"
+                        </p>
+                    </div>
+                    <div class="testimonial-item-author">
+                        <img src="image/client-3.png" alt="Jane Doe" class="author-item-photo"> <!-- Replace with actual photo -->
+                        <div class="author-item-details">
+                            <h4 class="author-item-name">Marc Foley_</h4>
+                            <p class="author-item-title">CEO,</p>
+                            <p class="author-item-company-link"><!-- Optional company link -->
+                                <!-- <a href="#" target="_blank">alphatech.com</a> -->
+                            </p> 
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial Item 2 -->
+                <div class="testimonial-item-card">
+                    <div class="testimonial-item-content">
+                        <i class="fas fa-quote-right quote-mark-bg"></i>
+                        <p class="testimonial-item-text">
+                            "The attention to detail and creative input Munna brought to our website redesign was exceptional. He's a great communicator and always kept us in the loop. The new site is fast, beautiful, and user-friendly. Highly recommend his services!"
+                        </p>
+                    </div>
+                    <div class="testimonial-item-author">
+                        <img src="image/client-4.png" alt="John Smith" class="author-item-photo"> <!-- Replace with actual photo -->
+                        <div class="author-item-details">
+                            <h4 class="author-item-name">Marco Burk
+_</h4>
+                            <p class="author-item-title">Project Manager,</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial Item 3 -->
+                <div class="testimonial-item-card">
+                    <div class="testimonial-item-content">
+                        <i class="fas fa-quote-right quote-mark-bg"></i>
+                        <p class="testimonial-item-text">
+                            "I've worked with many developers, but Munna stands out for his technical proficiency and his ability to understand complex requirements quickly. He delivered a robust and scalable solution on time and within budget. A true professional."
+                        </p>
+                    </div>
+                    <div class="testimonial-item-author">
+                        <!-- Example without photo -->
+                        <div class="author-item-details no-photo">
+                            <h4 class="author-item-name">Alex Lee_</h4>
+                            <p class="author-item-title">Lead Developer,</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial Item 4 (Longer text example) -->
+                <div class="testimonial-item-card">
+                    <div class="testimonial-item-content">
+                        <i class="fas fa-quote-right quote-mark-bg"></i>
+                        <p class="testimonial-item-text">
+                            "From the initial consultation to the final launch, Mohiuddin Munna demonstrated a high level of professionalism and expertise. He was always responsive to our queries and provided valuable insights that significantly improved the project's outcome. The UI/UX he designed is intuitive and has received positive feedback from our users. We look forward to collaborating with him on future projects."
+                        </p>
+                    </div>
+                    <div class="testimonial-item-author">
+                        <img src="image/client-5.png" alt="Sarah Chen" class="author-item-photo"> <!-- Replace with actual photo -->
+                        <div class="author-item-details">
+                            <h4 class="author-item-name">Erik McGraw_</h4>
+                            <p class="author-item-title">Marketing Director,</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add more testimonial items as needed -->
+
+            </div> <!-- End of .testimonials-listing-grid -->
+        </div>
+    </section>
+</main>
+
+    <!-- Footer Section -->
+    <footer id="main-footer">
+        <div class="container footer-container">
+            <div class="footer-top">
+                <div class="footer-logo-area">
+                    <p class="footer-logo-text">&lt;End_Transmission /&gt;</p>
+                </div>
+                <div class="footer-social-links">
+                    <a href="https://github.com/yourusername" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i><span>GitHub</span></a>
+                    <a href="https://linkedin.com/in/yourusername" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i><span>LinkedIn</span></a>
+                    <a href="#" target="_blank" aria-label="Dribbble (Optional)"><i class="fab fa-dribbble"></i><span>Dribbble</span></a>
+                    <!-- Add more as needed -->
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="copyright-text">&copy; <span id="currentYear"></span> Mohiuddin Munna. All rights reserved. // System Status: <span class="status-ok">Online</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

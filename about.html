@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohiuddin_Munna // Web Developer & Designer</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts (Orbitron for headings/logo, Roboto Mono for body/nav) -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="dark-mode"> <!-- Start with dark mode by default -->
+
+    <!-- Header Section -->
+    <header id="main-header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <span class="logo-text">&lt;Mohiuddin_Munna /&gt;</span>
+            </a>
+            <nav class="nav-links">
+                <ul>
+                    <li><a href="index.html" class="nav-item " data-page="index">_home</a></li>
+                    <li><a href="about.html" class="nav-item" data-page="about">_about</a></li>
+                    <li><a href="projects.html" class="nav-item" data-page="projects">_projects</a></li>
+                    <li><a href="skills.html" class="nav-item" data-page="skills">_skills</a></li>
+                    <li><a href="contact.html" class="nav-item" data-page="contact">_contact</a></li>
+                    <!-- Optional: <li><a href="blog.html" class="nav-item" data-page="blog">_blog</a></li> -->
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button id="darkModeToggle" class="theme-toggle-button" aria-label="Toggle Theme">
+                    <i class="fas fa-sun sun-icon"></i>
+                    <i class="fas fa-moon moon-icon"></i>
+                </button>
+                <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+<main id="page-content">
+    <!-- About Hero Section -->
+    <section id="about-hero" class="about-hero-section section-padding">
+        <div class="container">
+            <div class="section-header">
+                <h1 class="page-title glitch" data-text="Decoding_Munna">// Decoding_Mohiuddin_Munna</h1>
+                <p class="section-subtitle animated-text">
+                    <span>Unveiling the architect behind the code. </span>
+                    <span>A journey through pixels, passion, and problem-solving.</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- My Story / Bio Section -->
+    <section id="my-story" class="my-story-section section-padding-sm">
+        <div class="container story-container">
+            <div class="story-visual animate-on-scroll" data-animation="fadeInLeft">
+                <!-- Option 1: Your professional photo in a different pose or style -->
+                <!-- <img src="image/Mohiuddin Munna.jpeg" alt="Mohiuddin Munna" class="story-profile-photo"> -->
+
+                <!-- Option 2: A thematic illustration or graphic -->
+                <div class="abstract-visual">
+                    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:var(--accent-primary);stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:var(--accent-secondary);stop-opacity:1" />
+                            </linearGradient>
+                        </defs>
+                        <circle cx="50" cy="50" r="40" stroke="url(#grad1)" stroke-width="4" fill="none" />
+                        <text x="50" y="55" font-family="Orbitron, sans-serif" font-size="12" fill="var(--accent-primary)" text-anchor="middle">&#x3C;/M&#x3E;</text>
+                    </svg>
+                </div>
+            </div>
+            <div class="story-content animate-on-scroll" data-animation="fadeInRight">
+                <h2 class="story-headline">//_My_Genesis_Protocol</h2>
+                <p>Hello! I'm Mohiuddin Munna, a creative technologist and front-end developer navigating the ever-evolving digital landscape. My fascination with the web began with a simple line of code, and it quickly blossomed into a full-fledged passion for building intuitive, performant, and aesthetically engaging online experiences.</p>
+                <p>My journey has been one of continuous learning and adaptation, fueled by a curiosity for new technologies and a commitment to mastering my craft. I believe that great design is not just about looks, but about how effectively it communicates and solves problems for the end-user. This philosophy guides every project I undertake, from initial concept to final deployment.</p>
+                <p>When I'm not immersed in code or exploring new design patterns, you might find me [আপনার একটি শখ এখানে উল্লেখ করুন, যেমন: experimenting with generative art, contributing to open-source projects, or diving into a sci-fi novel]. This blend of technical rigor and creative exploration defines my approach to web development.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Philosophy / Mission Section -->
+    <section id="my-philosophy" class="my-philosophy-section section-padding-sm">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title-alt">//_Core_Directives</h2>
+            </div>
+            <div class="philosophy-grid">
+                <div class="philosophy-card animate-on-scroll" data-animation="zoomIn" data-delay="0.1s">
+                    <div class="philosophy-icon"><i class="fas fa-lightbulb"></i></div>
+                    <h3 class="philosophy-title">Innovation_Driven</h3>
+                    <p>Constantly seeking new ways to solve problems and enhance user experiences through cutting-edge technologies and creative thinking.</p>
+                </div>
+                <div class="philosophy-card animate-on-scroll" data-animation="zoomIn" data-delay="0.2s">
+                    <div class="philosophy-icon"><i class="fas fa-users"></i></div>
+                    <h3 class="philosophy-title">User_Centricity</h3>
+                    <p>Placing the user at the heart of every design and development decision, ensuring intuitive, accessible, and meaningful interactions.</p>
+                </div>
+                <div class="philosophy-card animate-on-scroll" data-animation="zoomIn" data-delay="0.3s">
+                    <div class="philosophy-icon"><i class="fas fa-cogs"></i></div> <!-- or fas fa-shield-alt for integrity/quality -->
+                    <h3 class="philosophy-title">Quality_&_Integrity</h3>
+                    <p>Committed to delivering high-quality, robust, and maintainable code, adhering to best practices and transparent communication.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Optional: Experience Timeline Section -->
+    <section id="experience-timeline" class="experience-timeline-section section-padding-sm" style="display: none;"> <!-- Initially hidden -->
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title-alt">//_Career_Chronicles</h2>
+            </div>
+            <div class="timeline">
+                <!-- Timeline Item 1 -->
+                <div class="timeline-item animate-on-scroll" data-animation="fadeInUp">
+                    <div class="timeline-icon"><i class="fas fa-briefcase"></i></div>
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Senior Front-End Developer</h3>
+                        <p class="timeline-company">Innovatech Ltd. <span class="timeline-date">(2021 - Present)</span></p>
+                        <ul class="timeline-duties">
+                            <li>Led the development of key UI features for a major SaaS platform.</li>
+                            <li>Mentored junior developers and conducted code reviews.</li>
+                            <li>Collaborated with UX/UI designers to implement pixel-perfect interfaces.</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Timeline Item 2 -->
+                <div class="timeline-item animate-on-scroll" data-animation="fadeInUp" data-delay="0.2s">
+                    <div class="timeline-icon"><i class="fas fa-graduation-cap"></i></div> <!-- Or another briefcase for another job -->
+                    <div class="timeline-content">
+                        <h3 class="timeline-title">Web Developer</h3>
+                        <p class="timeline-company">Digital Solutions Co. <span class="timeline-date">(2019 - 2021)</span></p>
+                        <ul class="timeline-duties">
+                            <li>Developed and maintained client websites using WordPress and custom themes.</li>
+                            <li>Implemented responsive designs and optimized site performance.</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Add more timeline items -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Optional: Call to Action to view projects or contact -->
+    <section id="about-page-cta" class="about-page-cta-section section-padding">
+        <div class="container text-center">
+            <h2 class="cta-headline-alt animate-on-scroll" data-animation="fadeIn">Ready to see these principles in action?</h2>
+            <p class="cta-subheadline-alt animate-on-scroll" data-animation="fadeIn" data-delay="0.1s">
+                Explore my portfolio to see how I translate ideas into digital reality, or let's connect to discuss your next venture.
+            </p>
+            <div class="about-cta-buttons animate-on-scroll" data-animation="fadeInUp" data-delay="0.2s">
+                <a href="projects.html" class="cta-button primary-cta large-cta">
+                    <i class="fas fa-terminal"></i> View_My_Work_
+                </a>
+                <a href="contact.html" class="cta-button secondary-cta large-cta">
+                    <i class="fas fa-link"></i> Let's_Connect_
+                </a>
+            </div>
+        </div>
+    </section>
+</main>
+
+    <!-- Footer Section -->
+    <footer id="main-footer">
+        <div class="container footer-container">
+            <div class="footer-top">
+                <div class="footer-logo-area">
+                    <p class="footer-logo-text">&lt;End_Transmission /&gt;</p>
+                </div>
+                <div class="footer-social-links">
+                    <a href="https://github.com/yourusername" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i><span>GitHub</span></a>
+                    <a href="https://linkedin.com/in/yourusername" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i><span>LinkedIn</span></a>
+                    <a href="#" target="_blank" aria-label="Dribbble (Optional)"><i class="fab fa-dribbble"></i><span>Dribbble</span></a>
+                    <!-- Add more as needed -->
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="copyright-text">&copy; <span id="currentYear"></span> Mohiuddin Munna. All rights reserved. // System Status: <span class="status-ok">Online</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

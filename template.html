@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohiuddin_Munna // Web Developer & Designer</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts (Orbitron for headings/logo, Roboto Mono for body/nav) -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="dark-mode"> <!-- Start with dark mode by default -->
+
+    <!-- Header Section -->
+    <header id="main-header">
+        <div class="container header-container">
+            <a href="index.html" class="logo">
+                <span class="logo-text">&lt;Mohiuddin_Munna /&gt;</span>
+            </a>
+            <nav class="nav-links">
+                <ul>
+                    <li><a href="index.html" class="nav-item " data-page="index">_home</a></li>
+                    <li><a href="about.html" class="nav-item" data-page="about">_about</a></li>
+                    <li><a href="projects.html" class="nav-item" data-page="projects">_projects</a></li>
+                    <li><a href="skills.html" class="nav-item" data-page="skills">_skills</a></li>
+                    <li><a href="contact.html" class="nav-item" data-page="contact">_contact</a></li>
+                    <!-- Optional: <li><a href="blog.html" class="nav-item" data-page="blog">_blog</a></li> -->
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button id="darkModeToggle" class="theme-toggle-button" aria-label="Toggle Theme">
+                    <i class="fas fa-sun sun-icon"></i>
+                    <i class="fas fa-moon moon-icon"></i>
+                </button>
+                <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area (This will be different for each page) -->
+    <main id="page-content">
+        <div class="container placeholder-content">
+            <h1>Page Content Goes Here</h1>
+            <p>This is a placeholder for the main content of your page. Replace this with actual section content for each specific page (e.g., Home, About, Projects).</p>
+        </div>
+    </main>
+
+    <!-- Footer Section -->
+    <footer id="main-footer">
+        <div class="container footer-container">
+            <div class="footer-top">
+                <div class="footer-logo-area">
+                    <p class="footer-logo-text">&lt;End_Transmission /&gt;</p>
+                </div>
+                <div class="footer-social-links">
+                    <a href="https://github.com/yourusername" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i><span>GitHub</span></a>
+                    <a href="https://linkedin.com/in/yourusername" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i><span>LinkedIn</span></a>
+                    <a href="#" target="_blank" aria-label="Dribbble (Optional)"><i class="fab fa-dribbble"></i><span>Dribbble</span></a>
+                    <!-- Add more as needed -->
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="copyright-text">&copy; <span id="currentYear"></span> Mohiuddin Munna. All rights reserved. // System Status: <span class="status-ok">Online</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
