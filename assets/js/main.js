@@ -1,12 +1,19 @@
-// assets/js/main.js
-// Core interactions: header/nav, sticky behavior, role typer, filters, skill bars,
-// contact form (AJAX → always redirect to /thanks), on-scroll reveals, cursor glow, scroll-to-top.
+// Core interactions: header/nav, sticky shadow, role typer, filters, skill bars,
+// scroll reveal, contact form (AJAX → /thanks), smooth anchors,
+// pointer-reactive skill cards, scroll-to-top.
 
 (() => {
-  const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const prefersReduced =
+    window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Dev detect for local fallback
+  const IS_DEV =
+    location.protocol === 'file:' ||
+    location.hostname === '127.0.0.1' ||
+    location.hostname === 'localhost';
 
   // Helpers
-  const $ = (sel, ctx = document) => ctx.querySelector(sel);
+  const $  = (sel, ctx = document) => ctx.querySelector(sel);
   const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
 
   function setCurrentYear() {
@@ -14,7 +21,7 @@
     if (y) y.textContent = new Date().getFullYear();
   }
 
-  // Header: keep fixed, add shadow when scrolled
+  // Header: keep fixed; add shadow on scroll; mobile menu
   function bindHeaderInteractions() {
     const header = $('#main-header');
     const menuToggle = $('#menuToggle');
@@ -114,17 +121,18 @@
   // Skills bars animation on view
   function setupSkillBars() {
     const bars = $$('.level-bar');
-    if (bars.length === 0 || prefersReduced) return;
+    if (!bars.length || prefersReduced) return;
 
     const io = new IntersectionObserver((entries, obs) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           const bar = entry.target;
-          const final = bar.style.width || bar.getAttribute('data-width') || bar.getAttribute('style')?.match(/width:\s*([^;]+)/)?.[1] || '';
+          const final = bar.style.width || bar.getAttribute('data-width') ||
+                        bar.getAttribute('style')?.match(/width:\s*([^;]+)/)?.[1] || '';
           if (final) {
             bar.style.transition = 'width .8s ease-out';
             bar.style.width = '0%';
-            bar.getBoundingClientRect();
+            bar.getBoundingClientRect(); // reflow
             bar.style.width = final;
           }
           obs.unobserve(bar);
@@ -135,10 +143,10 @@
     bars.forEach(b => io.observe(b));
   }
 
-  // Reveal on scroll (.animate-on-scroll)
+  // Reveal on scroll
   function setupScrollReveal() {
     const items = $$('.animate-on-scroll');
-    if (items.length === 0) return;
+    if (!items.length) return;
 
     items.forEach(el => {
       const delay = el.getAttribute('data-delay') || '0s';
@@ -167,20 +175,19 @@
     items.forEach(el => io.observe(el));
   }
 
-  // Contact form (AJAX → always redirect to /thanks on success)
+  // Contact form (AJAX → always redirect to /thanks; dev fallback to /pages/thanks.html)
   function setupContactForm() {
     const form = $('#contactForm');
     const statusEl = $('#form-status');
     const submitBtn = $('#submitBtn');
     if (!form || !statusEl || !submitBtn) return;
 
-    // Make sure we are NOT in pure-HTML fallback mode
-    // (উপায়–১ করলে data-ajax="off" দিয়ে রেখেছিলে — সেটা এবার মুছে দাও বা off না থাকে)
+    // If fallback requested (data-ajax="off"), skip JS
     if (form.getAttribute('data-ajax') === 'off') return;
 
     const defaultIcon = submitBtn.querySelector('.icon-default');
     const loadingIcon = submitBtn.querySelector('.icon-loading');
-    const buttonText = submitBtn.querySelector('.btn-text');
+    const buttonText  = submitBtn.querySelector('.btn-text');
 
     const isNetlify = form.hasAttribute('data-netlify') || form.getAttribute('method') === 'POST';
 
@@ -188,7 +195,7 @@
       submitBtn.disabled = on;
       if (defaultIcon) defaultIcon.style.display = on ? 'none' : 'inline-block';
       if (loadingIcon) loadingIcon.style.display = on ? 'inline-block' : 'none';
-      if (buttonText) buttonText.textContent = on ? 'Transmitting...' : 'Send_Signal_';
+      if (buttonText)  buttonText.textContent = on ? 'Transmitting...' : 'Send_Signal_';
     }
     function setStatus(msg, type = '') {
       statusEl.textContent = msg;
@@ -201,18 +208,18 @@
     }
 
     form.addEventListener('submit', async (e) => {
-      e.preventDefault(); // we’ll handle it via fetch
+      e.preventDefault();
 
       setStatus('');
       setLoading(true);
 
       const fd = new FormData(form);
-
-      // Honeypot
-      if (fd.get('bot-field')) {
+      if (fd.get('bot-field')) { // honeypot
         setLoading(false);
         return setStatus('Spam detected.', 'error');
       }
+
+      const THANKS_URL = IS_DEV ? '/pages/thanks.html' : '/thanks';
 
       try {
         if (isNetlify) {
@@ -226,14 +233,13 @@
           });
 
           if (res.ok) {
-            // Always redirect to /thanks
-            window.location.assign('/thanks');
+            window.location.assign(THANKS_URL);
             return;
           } else {
             setStatus(`Transmission_Error (Netlify). Status: ${res.status}`, 'error');
           }
         } else {
-          // Custom endpoint (if you set data-endpoint)
+          // Custom endpoint support (optional)
           const endpoint = form.getAttribute('data-endpoint') || '';
           if (!endpoint) {
             setStatus('No endpoint configured. Enable Netlify Forms or set data-endpoint.', 'error');
@@ -246,7 +252,7 @@
               body: JSON.stringify(payload)
             });
             if (res.ok) {
-              window.location.assign('/thanks'); // redirect on success
+              window.location.assign(THANKS_URL);
               return;
             } else {
               setStatus(`Transmission_Error. Status: ${res.status}`, 'error');
@@ -275,27 +281,47 @@
     });
   }
 
-  // Cursor-follow glow on .skill-card (sets CSS vars)
+  // Pointer‑reactive hotspot for .skill-card (updates CSS vars)
   function setupCursorSpotOnSkillCards() {
     const cards = $$('.skill-card');
-    if (cards.length === 0) return;
+    if (!cards.length) return;
 
     cards.forEach(card => {
       let raf = 0;
-      let pendingX = null, pendingY = null;
 
-      function updateVars() {
+      function setVars(e) {
         raf = 0;
-        if (pendingX == null || pendingY == null) return;
-        card.style.setProperty('--spot-x', pendingX + 'px');
-        card.style.setProperty('--spot-y', pendingY + 'px');
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        // px vars (备用)
+        card.style.setProperty('--spot-x', x + 'px');
+        card.style.setProperty('--spot-y', y + 'px');
+
+        // percentage vars used by gradients
+        const xp = (x / rect.width) * 100;
+        const yp = (y / rect.height) * 100;
+        card.style.setProperty('--spot-x-p', xp.toFixed(2) + '%');
+        card.style.setProperty('--spot-y-p', yp.toFixed(2) + '%');
+
+        // orientation if needed (not used by current style, kept for extend)
+        const cx = rect.width / 2, cy = rect.height / 2;
+        const angle = Math.atan2(y - cy, x - cx) * 180 / Math.PI;
+        card.style.setProperty('--spot-angle', angle.toFixed(2) + 'deg');
       }
 
       card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        pendingX = e.clientX - rect.left;
-        pendingY = e.clientY - rect.top;
-        if (!raf) raf = requestAnimationFrame(updateVars);
+        if (!raf) raf = requestAnimationFrame(() => setVars(e));
+      });
+
+      card.addEventListener('mouseleave', () => {
+        // snap back to center
+        card.style.setProperty('--spot-x-p', '50%');
+        card.style.setProperty('--spot-y-p', '50%');
+        card.style.setProperty('--spot-x', '50%');
+        card.style.setProperty('--spot-y', '50%');
+        card.style.setProperty('--spot-angle', '0deg');
       });
     });
   }
@@ -315,12 +341,10 @@
         background: var(--accent-primary); color: var(--bg-color);
         border: 2px solid var(--accent-primary);
         box-shadow: 0 8px 20px rgba(var(--accent-primary-rgb,0,240,255), .25);
-        transition: opacity .25s ease, transform .25s ease, background .2s, color .2s, border-color .2s;
+        transition: opacity .25s, transform .25s, background .2s, color .2s, border-color .2s;
         opacity: 0; transform: translateY(12px); pointer-events: none;
       }
-      .scroll-top-btn:hover{
-        background: transparent; color: var(--accent-primary);
-      }
+      .scroll-top-btn:hover{ background: transparent; color: var(--accent-primary); }
       .scroll-top-btn.show{ opacity: 1; transform: translateY(0); pointer-events: auto; }
       `;
       document.head.appendChild(style);
@@ -362,10 +386,11 @@
     setupScrollToTop();
   });
 
-  // Re-bind after partials loaded
+  // Re-bind after partials load (header/footer)
   document.addEventListener('partials:loaded', () => {
     setCurrentYear();
     bindHeaderInteractions();
+    setupCursorSpotOnSkillCards(); // in case cards loaded later
     setupScrollToTop();
   });
 })();

@@ -23,7 +23,6 @@ Modern, fast, and SEO‑optimized portfolio with clean URLs, modular CSS/JS, Net
 
 ## Project Structure (important)
 
-```
 my-portfolio-v2
 ├─ index.html
 ├─ pages
@@ -50,7 +49,24 @@ my-portfolio-v2
 ├─ sitemap.xml
 ├─ netlify.toml
 └─ README.md
-```
+
+
+## Local Development
+You can use any static server. Two options:
+
+- VS Code Live Server (recommended for quick preview)
+  - index: http://127.0.0.1:5500/
+  - Clean URLs like /about typically 404 in dev. We fixed this via include-partials.js dev fallback mapping:
+    - /about → /pages/about.html
+    - /projects → /pages/projects.html
+    - …
+    - /thanks → /pages/thanks.html
+- Netlify CLI (closest to production)
+
+npm i -g netlify-cli
+netlify login
+netlify init # once
+netlify dev # http://localhost:8888
 
 
 ## Build & Deploy (Netlify)
@@ -144,5 +160,7 @@ This avoids 404 during local development.
 - Design & development: Mohiuddin Munna
 - Icons: Font Awesome
 - Hosting: Netlify
+
 ---
+Happy shipping! 🚀
 
