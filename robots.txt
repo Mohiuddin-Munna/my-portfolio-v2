@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Optional: keep utility pages out of search (we already set noindex on 404)
+Disallow: /404.html
+
+Sitemap: https://mohiuddinmunna.netlify.app/sitemap.xml
