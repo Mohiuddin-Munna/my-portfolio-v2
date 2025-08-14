@@ -53,24 +53,6 @@ my-portfolio-v2
 ```
 
 
-## Local Development
-You can use any static server. Two options:
-
-- VS Code Live Server (recommended for quick preview)
-  - index: http://127.0.0.1:5500/
-  - Clean URLs like /about typically 404 in dev. We fixed this via include-partials.js dev fallback mapping:
-    - /about → /pages/about.html
-    - /projects → /pages/projects.html
-    - …
-    - /thanks → /pages/thanks.html
-- Netlify CLI (closest to production)
-
-npm i -g netlify-cli
-netlify login
-netlify init # once
-netlify dev # http://localhost:8888
-
-
 ## Build & Deploy (Netlify)
 - We’re using just netlify.toml (no _headers file). Already configured:
 - Pretty URL rewrites (200)
@@ -162,7 +144,5 @@ This avoids 404 during local development.
 - Design & development: Mohiuddin Munna
 - Icons: Font Awesome
 - Hosting: Netlify
-
 ---
-Happy shipping! 🚀
 
