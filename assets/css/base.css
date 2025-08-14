@@ -40,13 +40,23 @@ body{
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  overflow-x: hidden;
+  overflow-x: hidden; /* prevent horizontal scroll */
 
   /* Fallbacks until theme.css loads */
   background-color: var(--bg-color, #0d0d1a);
   color: var(--text-color, #c0c0ff);
 
   transition: background-color .3s ease, color .3s ease;
+}
+
+/* Hide global scrollbars but keep scrolling active (Windows/Firefox/WebKit) */
+html, body{
+  -ms-overflow-style: none;  /* IE/old Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+html::-webkit-scrollbar,
+body::-webkit-scrollbar{
+  display: none;             /* Chrome/Safari/WebKit */
 }
 
 /* Keep header fixed space accounted */
@@ -177,8 +187,6 @@ button{ cursor: pointer; }
 /* Anchor offset for fixed header */
 [id]{ scroll-margin-top: calc(var(--header-height) + 16px); }
 
-/* Footer baseline spacing handled in components.css */
-
 /* Mobile tweaks */
 @media (max-width: 480px){
   .section-padding{ padding: 60px 0; }
@@ -187,3 +195,12 @@ button{ cursor: pointer; }
 
 /* Preloader helper (main preloader styles in components.css) */
 .hud-noscroll{ overflow: hidden; }
+
+/* Utility: hide scrollbar on a specific scrollable container (optional) */
+.hide-scrollbar{
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.hide-scrollbar::-webkit-scrollbar{
+  display: none;
+}
