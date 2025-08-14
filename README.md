@@ -23,6 +23,7 @@ Modern, fast, and SEO‑optimized portfolio with clean URLs, modular CSS/JS, Net
 
 ## Project Structure (important)
 
+```
 my-portfolio-v2
 ├─ index.html
 ├─ pages
@@ -49,6 +50,7 @@ my-portfolio-v2
 ├─ sitemap.xml
 ├─ netlify.toml
 └─ README.md
+```
 
 
 ## Local Development
