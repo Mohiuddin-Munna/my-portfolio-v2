@@ -84,7 +84,13 @@
   color: var(--accent-primary);
   font-size: clamp(2.1rem, 5.5vw, 3.4rem);
   margin-bottom: 10px;
+  display: block;
+  overflow-wrap: anywhere;   /* break long unspaced tokens */
+  word-break: break-word;
+  line-height: 1.15;
+  padding-inline: clamp(6px, 2vw, 12px);
 }
+
 .about-hero-section .section-subtitle,
 .projects-hero-section .section-subtitle,
 .skills-hero-section .section-subtitle,
@@ -251,6 +257,22 @@ body.light-mode .contact-hero-section .section-subtitle{
 .timeline-duties li{ margin: 6px 0; padding-left: 18px; position: relative; }
 .timeline-duties li::before{ content:"»"; position:absolute; left:0; color: var(--accent-secondary); font-weight: 800; }
 
+.about-page-cta-section .about-cta-buttons{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.about-page-cta-section .about-cta-buttons .cta-button{
+  min-width: 220px;
+}
+
+@media (max-width: 360px){
+  .about-page-cta-section .about-cta-buttons{ gap: 14px; }
+}
+
 /* =========================
    Projects Page
    ========================= */
@@ -368,4 +390,99 @@ body.light-mode .contact-hero-section .section-subtitle{
   .projects-showcase-grid{ grid-template-columns: 1fr; gap: 24px; }
   .project-card,
   .project-showcase-card{ max-width: 520px; margin-inline:auto; }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* Long headings anti-overflow (underscores/slashes) */
+.section-header .section-title,
+.section-title-alt,
+.page-title{
+  overflow-wrap: anywhere;   /* break long unspaced tokens */
+  word-break: break-word;
+  max-width: 100%;
+}
+
+/* Tiny screens: give a little side padding so it doesn't kiss the edge */
+.section-header{
+  padding-inline: clamp(8px, 2.5vw, 12px);
+}
+
+/* On small screens, let .section-title expand full-width instead of inline-block */
+@media (max-width: 480px){
+  .section-header .section-title{
+    display: block; /* override base.css inline-block */
+    font-size: clamp(1.6rem, 7vw, 2.2rem);
+  }
+  .section-title-alt{
+    font-size: clamp(1.5rem, 6.8vw, 2.1rem);
+  }
+}
+
+/* About page specific tweak (optional, keeps it extra safe) */
+.my-philosophy-section .section-title-alt{
+  display: block;
+  padding-inline: 8px;
+}
+
+
+
+/* Skills page: category titles — prevent overflow on small screens */
+.category-title{
+  /* already has font-size/border/etc.; add these */
+  display: block;
+  max-width: 100%;
+  overflow-wrap: anywhere;   /* breaks long tokens with underscores/slashes */
+  word-break: break-word;
+  white-space: normal;
+  line-height: 1.2;
+  padding-inline: clamp(6px, 2.5vw, 12px); /* tiny side breathing room */
+}
+
+/* Smaller screens: scale down a bit so it doesn't hug the edges */
+@media (max-width: 480px){
+  .category-title{
+    font-size: clamp(1.25rem, 5.8vw, 1.6rem);
+    padding-bottom: 6px;           /* a touch tighter border spacing */
+    border-bottom-width: 1px;      /* lighter divider on tiny screens */
+  }
+}
+@media (max-width: 360px){
+  .category-title{
+    font-size: 1.2rem;
+  }
+}
+
+/* Contact page: prevent overflow on long sub-titles */
+.contact-details-section .contact-sub-title{
+  display: block;
+  max-width: 100%;
+  overflow-wrap: anywhere;  /* break long tokens like Direct_Transmission_Form */
+  word-break: break-word;
+  white-space: normal;
+  line-height: 1.2;
+  padding-inline: clamp(6px, 2.5vw, 12px); /* avoid hugging screen edge */
+}
+
+/* Tiny screens: scale a bit + lighter divider */
+@media (max-width: 480px){
+  .contact-details-section .contact-sub-title{
+    font-size: clamp(1.2rem, 5.8vw, 1.5rem);
+    border-bottom-width: 1px;
+  }
+}
+
+/* Long links won’t cause horizontal scroll */
+.contact-info-wrapper a{
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }

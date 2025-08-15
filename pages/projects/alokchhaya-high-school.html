@@ -3,7 +3,7 @@
 <html lang="bn" dir="ltr">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Alokchhaya High School — Case Study | Mohiuddin Munna</title>
   <meta name="description" content="Alokchhaya High School — a responsive informational website designed and developed by Mohiuddin Munna. Clean content hierarchy, fast and accessible UI." />
   <meta name="robots" content="index, follow" />
@@ -82,6 +82,22 @@
     ]
   }
   </script>
+    
+  <!-- Gate: prevent first-paint/flash before HUD preloader -->
+  <style id="hud-gate-css">
+  /* Dark fallback to avoid white flash */
+  html.hud-gate, html.hud-gate body{ background:#040b12; }
+  html.hud-gate body{ overflow:hidden; }
+  /* Hide everything while gate is ON */
+  html.hud-gate body > *{ visibility:hidden !important; }
+  /* But if our HUD overlay appears, show it immediately */
+  html.hud-gate body > #hud-preloader{ visibility:visible !important; }
+  </style>
+  <script>
+  // Add the gate class as early as possible, before anything paints
+  document.documentElement.classList.add('hud-gate');
+  </script>
+  
 </head>
 
 <body class="dark-mode">

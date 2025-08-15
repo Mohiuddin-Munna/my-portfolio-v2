@@ -393,4 +393,51 @@
     setupCursorSpotOnSkillCards(); // in case cards loaded later
     setupScrollToTop();
   });
+
+
+
+
+  function setupProjectImageFallbacks() {
+    const wrappers = $$('.project-image-wrapper, .project-card-image-wrapper');
+  
+    function markNoImage(wrapper){
+      if (wrapper.classList.contains('no-image')) return;
+      wrapper.classList.add('no-image');
+      const img = wrapper.querySelector('img');
+      if (img) img.style.display = 'none';
+    }
+  
+    wrappers.forEach(wrapper => {
+      const img = wrapper.querySelector('img');
+  
+      // img element-ই নেই -> no-image
+      if (!img) { markNoImage(wrapper); return; }
+  
+      // empty src হলে instant fallback
+      const src = img.getAttribute('src') || '';
+      if (!src.trim()) { markNoImage(wrapper); return; }
+  
+      // ব্রোকেন হলে বা লোড হয়ে naturalWidth শূন্য হলে
+      const checkNow = () => { if (!img.naturalWidth) markNoImage(wrapper); };
+  
+      if (img.complete) {
+        checkNow();
+      } else {
+        img.addEventListener('load', checkNow, { once: true });
+        img.addEventListener('error', () => markNoImage(wrapper), { once: true });
+      }
+    });
+  }
+
+  // Init-এ কল যোগ করুন
+  document.addEventListener('DOMContentLoaded', () => {
+    // ...existing inits
+    setupProjectImageFallbacks();
+  });
+  
+  // partials লোডের পরেও কল (যদি ভবিষ্যতে কার্ডগুলো partial থেকে আসে)
+  document.addEventListener('partials:loaded', () => {
+    setupProjectImageFallbacks();
+  });
+  
 })();

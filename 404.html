@@ -3,7 +3,7 @@
 <html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>404 — Page Not Found | Mohiuddin Munna</title>
   <meta name="description" content="The page you’re looking for doesn’t exist or has been moved. Explore other sections of the site." />
   <meta name="robots" content="noindex, nofollow" />
@@ -44,6 +44,23 @@
   <script src="/assets/js/include-partials.js" defer></script>
   <script src="/assets/js/preloader.js" defer></script>
   <script src="/assets/js/main.js" defer></script>
+
+    
+  <!-- Gate: prevent first-paint/flash before HUD preloader -->
+  <style id="hud-gate-css">
+  /* Dark fallback to avoid white flash */
+  html.hud-gate, html.hud-gate body{ background:#040b12; }
+  html.hud-gate body{ overflow:hidden; }
+  /* Hide everything while gate is ON */
+  html.hud-gate body > *{ visibility:hidden !important; }
+  /* But if our HUD overlay appears, show it immediately */
+  html.hud-gate body > #hud-preloader{ visibility:visible !important; }
+  </style>
+  <script>
+  // Add the gate class as early as possible, before anything paints
+  document.documentElement.classList.add('hud-gate');
+  </script>
+  
 </head>
 
 <body class="dark-mode">

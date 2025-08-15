@@ -1,17 +1,28 @@
-// HUD-style preloader: shows once per tab (session), respects ?nohud=1 and prefers-reduced-motion.
+// HUD-style preloader: shows once per tab (session), supports ?nohud=1 & prefers-reduced-motion.
 // Uses avatar: /assets/img/avatar/munna-avatar.webp
+// Gate support: if HEAD-এ <style id="hud-gate-css"> + <html class="hud-gate"> দেওয়া থাকে,
+// এই স্ক্রিপ্ট finish/skip হলে গেট খুলে দেয়, তাই কনটেন্ট ফ্ল্যাশ হবে না।
 
 (() => {
   const KEY = 'hudShown';
-  const MIN_TIME = 900;      // minimal visible time (ms)
+  const MIN_TIME = 900;      // minimally visible time (ms)
   const FORCE_HIDE = 4000;   // safety timeout (ms)
   const IMG = '/assets/img/avatar/munna-avatar.webp';
   const ALT = 'Mohiuddin Munna';
+
+  // Small helpers
+  const removeGate = () => {
+    try { document.documentElement.classList.remove('hud-gate'); } catch(_) {}
+    try { document.getElementById('hud-gate-css')?.remove(); } catch(_) {}
+  };
+  const unlockScroll = () => { try { document.body.classList.remove('hud-noscroll'); } catch(_) {} };
 
   // Skip via query string
   const qs = new URLSearchParams(location.search);
   if (qs.has('nohud')) {
     try { sessionStorage.setItem(KEY, '1'); } catch (_) {}
+    // gate থাকলে খুলে দেই, যেন কনটেন্ট দেখায়
+    removeGate();
     return;
   }
 
@@ -19,12 +30,16 @@
   const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (prefersReduced) {
     try { sessionStorage.setItem(KEY, '1'); } catch (_) {}
+    removeGate();
     return;
   }
 
   try {
     // Already shown in this tab?
-    if (sessionStorage.getItem(KEY) === '1') return;
+    if (sessionStorage.getItem(KEY) === '1') {
+      removeGate();
+      return;
+    }
 
     // Build overlay
     const overlay = document.createElement('div');
@@ -63,13 +78,13 @@
 
     // Simulated progress
     const fill = overlay.querySelector('.hud-progress-fill');
-    const pct = overlay.querySelector('.hud-percent span');
+    const pct  = overlay.querySelector('.hud-percent span');
     let progress = 0;
 
     function setProgress(p) {
       progress = Math.max(0, Math.min(100, p));
       if (fill) fill.style.width = progress + '%';
-      if (pct) pct.textContent = Math.round(progress);
+      if (pct)  pct.textContent = Math.round(progress);
     }
 
     const sim = setInterval(() => {
@@ -95,10 +110,12 @@
         const t = setInterval(() => {
           if (progress >= 100) {
             clearInterval(t);
+            // Fade the HUD, then remove; gate খুলে দিই যেন কনটেন্ট পেইন্ট হয়
             overlay.classList.add('hud-fade');
+            removeGate();
             setTimeout(() => {
               try { overlay.remove(); } catch (_) {}
-              try { document.body.classList.remove('hud-noscroll'); } catch (_) {}
+              unlockScroll();
             }, 350);
           } else {
             setProgress(progress + Math.max(2, (100 - progress) * 0.2));
@@ -115,7 +132,15 @@
     }
 
     // Safety timeout
-    setTimeout(finish, FORCE_HIDE);
+    setTimeout(() => {
+      // Ensure gate/HUD never gets stuck
+      try { overlay.classList.add('hud-fade'); } catch(_) {}
+      removeGate();
+      setTimeout(() => {
+        try { overlay.remove(); } catch(_) {}
+        unlockScroll();
+      }, 350);
+    }, FORCE_HIDE);
 
     // Debug/manual escape
     window.__hideHUD = finish;
@@ -123,6 +148,7 @@
   } catch (e) {
     console.error('HUD preloader error:', e);
     try { document.getElementById('hud-preloader')?.remove(); } catch(_) {}
-    try { document.body.classList.remove('hud-noscroll'); } catch(_) {}
+    unlockScroll();
+    removeGate();
   }
 })();

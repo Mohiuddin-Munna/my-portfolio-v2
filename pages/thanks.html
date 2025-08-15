@@ -3,7 +3,7 @@
 <html lang="bn" dir="ltr">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Thanks — Signal Received | Mohiuddin Munna</title>
   <meta name="description" content="Thanks! Your message has been received. I will get back to you soon. — Mohiuddin Munna" />
   <meta name="robots" content="noindex, follow" />
@@ -73,6 +73,22 @@
     ]
   }
   </script>
+    
+  <!-- Gate: prevent first-paint/flash before HUD preloader -->
+  <style id="hud-gate-css">
+  /* Dark fallback to avoid white flash */
+  html.hud-gate, html.hud-gate body{ background:#040b12; }
+  html.hud-gate body{ overflow:hidden; }
+  /* Hide everything while gate is ON */
+  html.hud-gate body > *{ visibility:hidden !important; }
+  /* But if our HUD overlay appears, show it immediately */
+  html.hud-gate body > #hud-preloader{ visibility:visible !important; }
+  </style>
+  <script>
+  // Add the gate class as early as possible, before anything paints
+  document.documentElement.classList.add('hud-gate');
+  </script>
+  
 </head>
 
 <body class="dark-mode">
