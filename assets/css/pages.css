@@ -486,3 +486,25 @@ body.light-mode .contact-hero-section .section-subtitle{
   overflow-wrap: anywhere;
   word-break: break-word;
 }
+
+/* Project detail: Explore_Links — button spacing + mobile layout */
+#project-links .cta-buttons-wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;                /* <-- স্পেসিং */
+  margin-top: 14px;         /* গ্রুপের উপরে একটু শ্বাস */
+}
+
+/* ছোট স্ক্রিনে vertical stack + consistent width */
+@media (max-width: 600px){
+  #project-links .cta-buttons-wrapper{
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+  #project-links .cta-buttons-wrapper .cta-button{
+    width: min(100%, 520px); /* মোবাইলে সুন্দর লাইন-লেন্থ */
+  }
+}
