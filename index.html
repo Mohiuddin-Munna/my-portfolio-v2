@@ -49,7 +49,6 @@
   <!-- Core JS -->
   <script src="/assets/js/theme.js" defer></script>
   <script src="/assets/js/include-partials.js" defer></script>
-  <script src="/assets/js/preloader.js" defer></script>
   <script src="/assets/js/main.js" defer></script>
 
   <!-- Structured Data: Person -->
@@ -99,20 +98,42 @@
   }
   </script>
     
-  <!-- Gate: prevent first-paint/flash before HUD preloader -->
+  <!-- HUD gate + avatar preload + preloader (single drop-in) -->
   <style id="hud-gate-css">
-  /* Dark fallback to avoid white flash */
-  html.hud-gate, html.hud-gate body{ background:#040b12; }
-  html.hud-gate body{ overflow:hidden; }
-  /* Hide everything while gate is ON */
-  html.hud-gate body > *{ visibility:hidden !important; }
-  /* But if our HUD overlay appears, show it immediately */
-  html.hud-gate body > #hud-preloader{ visibility:visible !important; }
+    /* Dark fallback to avoid white flash */
+    html.hud-gate, html.hud-gate body { background:#040b12; }
+    html.hud-gate body { overflow:hidden; }
+    /* Hide everything while gate is ON */
+    html.hud-gate body > * { visibility:hidden !important; }
+    /* But show the HUD immediately */
+    html.hud-gate body > #hud-preloader { visibility:visible !important; }
   </style>
   <script>
-  // Add the gate class as early as possible, before anything paints
-  document.documentElement.classList.add('hud-gate');
+    (function(){
+      try {
+        // Gate only on first visit in this tab
+        if (!sessionStorage.getItem('hudShown')) {
+          document.documentElement.classList.add('hud-gate');
+          // Failsafe: auto-open gate in case JS/preloader is delayed
+          setTimeout(function(){
+            try{
+              document.documentElement.classList.remove('hud-gate');
+              var s = document.getElementById('hud-gate-css');
+              if (s && s.parentNode) s.parentNode.removeChild(s);
+            }catch(_){}
+          }, 3500);
+        } else {
+          document.documentElement.classList.remove('hud-gate');
+        }
+      } catch(_) {}
+    })();
   </script>
+  
+  <!-- Preload HUD avatar for instant display -->
+  <link rel="preload" as="image" href="/assets/img/avatar/munna-avatar.webp" fetchpriority="high">
+  
+  <!-- Preloader (cache-busted) -->
+  <script src="/assets/js/preloader.js?v=2" defer></script>
   
 </head>
 
